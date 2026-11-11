@@ -97,9 +97,14 @@ def test_b10_git_secret_scan_and_gradio_server():
     tracked = ls_proc.stdout.splitlines()
     assert ".env" not in tracked, ".env must never be committed to Git!"
 
-    # Launch Gradio demo cleanly on an ephemeral test port and verify HTTP 200
+    # Launch Gradio demo cleanly on an ephemeral dynamic test port and verify HTTP 200
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(("127.0.0.1", 0))
+        free_port = s.getsockname()[1]
+
     demo = create_demo()
-    app, local_url, _ = demo.launch(server_name="127.0.0.1", server_port=7869, prevent_thread_lock=True)
+    app, local_url, _ = demo.launch(server_name="127.0.0.1", server_port=free_port, prevent_thread_lock=True)
     try:
         resp = requests.get(local_url, timeout=10)
         assert resp.status_code == 200
