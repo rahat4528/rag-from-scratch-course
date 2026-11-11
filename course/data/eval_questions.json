@@ -1,0 +1,115 @@
+[
+  {
+    "id": "q01",
+    "type": "exact_number",
+    "question": "How much does the Enterprise Plan cost per month?",
+    "expected_answer": "The Enterprise Plan costs $4,200 per month.",
+    "source_doc": "company_handbook.txt",
+    "key_facts": ["$4,200", "per month", "Enterprise Plan"]
+  },
+  {
+    "id": "q02",
+    "type": "exact_number",
+    "question": "By what percentage did HyperSync Auto-Tuning reduce median telemetry latency in the October 2026 release?",
+    "expected_answer": "HyperSync Auto-Tuning reduced median telemetry roundtrip latency by 42%.",
+    "source_doc": "recent_changelog.md",
+    "key_facts": ["42%", "latency", "HyperSync Auto-Tuning"]
+  },
+  {
+    "id": "q03",
+    "type": "exact_number",
+    "question": "What is the maximum daily meal expense reimbursement for traveling employees without requiring prior VP approval?",
+    "expected_answer": "Employees traveling on company business are reimbursed up to $150 per day for meals without requiring prior VP approval.",
+    "source_doc": "company_handbook.txt",
+    "key_facts": ["$150", "per day", "VP approval"]
+  },
+  {
+    "id": "q04",
+    "type": "exact_number",
+    "question": "What uptime SLA percentage is guaranteed for the Enterprise Tier?",
+    "expected_answer": "The Enterprise Tier guarantees a 99.995% service uptime SLA.",
+    "source_doc": "product_faq.md",
+    "key_facts": ["99.995%", "Enterprise Tier", "SLA"]
+  },
+  {
+    "id": "q05",
+    "type": "multi_document",
+    "question": "Which subscription tier is required to use ZeroGravity Failover, and what is the failover timeout threshold for peer nodes?",
+    "expected_answer": "ZeroGravity Failover is included in the Enterprise Plan ($4,200/month), and it triggers when a gateway or coordinator is unresponsive for more than 40 milliseconds.",
+    "source_docs": ["company_handbook.txt", "product_faq.md"],
+    "key_facts": ["Enterprise Plan", "40 milliseconds", "ZeroGravity"]
+  },
+  {
+    "id": "q06",
+    "type": "multi_document",
+    "question": "If a customer on the Professional tier experiences a Severity-1 incident on a Saturday morning, what is their target first response time and what channels can they use?",
+    "expected_answer": "Professional Support operates Monday through Saturday, 08:00 - 20:00 CET, with a target first response time within 2 hours for Severity-1 incidents via Email, web ticket portal, and Slack Connect.",
+    "source_docs": ["company_handbook.txt"],
+    "key_facts": ["within 2 hours", "08:00 - 20:00 CET", "Slack Connect"]
+  },
+  {
+    "id": "q07",
+    "type": "multi_document",
+    "question": "Who was appointed Chief AI Ethics Officer in October 2026, and what annual learning stipend can team members receive?",
+    "expected_answer": "Dr. Elina Vance was appointed Chief AI Ethics Officer in October 2026. Full-time employees receive an annual learning stipend of $1,200.",
+    "source_docs": ["recent_changelog.md", "company_handbook.txt"],
+    "key_facts": ["Dr. Elina Vance", "$1,200", "learning stipend"]
+  },
+  {
+    "id": "q08",
+    "type": "factual",
+    "question": "On which days are pets allowed in the Zurich office hub?",
+    "expected_answer": "Dogs are permitted in the Zurich hub on Tuesdays and Thursdays only, provided they are registered with office facilities and vaccinated.",
+    "source_doc": "company_handbook.txt",
+    "key_facts": ["Tuesdays and Thursdays", "Zurich hub"]
+  },
+  {
+    "id": "q09",
+    "type": "factual",
+    "question": "Which ROS2 distributions are natively supported by Novasphere Edge Agent?",
+    "expected_answer": "Novasphere Edge Agent natively supports ROS2 Humble Hawksbill, Iron Irwini, and Jazzy Jalisco.",
+    "source_doc": "product_faq.md",
+    "key_facts": ["Humble Hawksbill", "Iron Irwini", "Jazzy Jalisco"]
+  },
+  {
+    "id": "q10",
+    "type": "factual",
+    "question": "What steps should be taken to resolve the error code ERR_QUANTUM_TIMEOUT?",
+    "expected_answer": "Verify firewall permits inbound UDP on port 9872, ensure NTP/PTP clock drift is less than 5 ms, and restart the daemon with 'sudo systemctl restart novasphere-edge'.",
+    "source_doc": "product_faq.md",
+    "key_facts": ["port 9872", "< 5 ms", "sudo systemctl restart novasphere-edge"]
+  },
+  {
+    "id": "q11",
+    "type": "factual",
+    "question": "When will the legacy REST API v1 be shut down completely, and what protocols should be used instead?",
+    "expected_answer": "Legacy REST API v1 will return HTTP 410 Gone after December 31, 2026. Customers must migrate to gRPC v2 or the HyperSync Streaming API.",
+    "source_doc": "recent_changelog.md",
+    "key_facts": ["December 31, 2026", "gRPC v2", "HyperSync Streaming API"]
+  },
+  {
+    "id": "q12",
+    "type": "unanswerable",
+    "question": "What is Novasphere Dynamics' stock ticker symbol on NASDAQ?",
+    "expected_answer": "I don't know based on the provided context. The documents do not mention any stock ticker symbol or public market listing.",
+    "source_doc": null,
+    "key_facts": ["unanswerable", "not mentioned"]
+  },
+  {
+    "id": "q13",
+    "type": "unanswerable",
+    "question": "What is the warranty and return policy for physical sensor hardware returned after 90 days?",
+    "expected_answer": "I don't know based on the provided context. The documentation does not describe a warranty or return policy for physical hardware.",
+    "source_doc": null,
+    "key_facts": ["unanswerable", "not mentioned"]
+  },
+  {
+    "id": "q14",
+    "type": "unanswerable",
+    "question": "What is the monthly pricing for Novasphere's satellite uplink package in South America?",
+    "expected_answer": "I don't know based on the provided context. There is no mention of satellite uplink packages or South America pricing.",
+    "source_doc": null,
+    "key_facts": ["unanswerable", "not mentioned"]
+  }
+]
+

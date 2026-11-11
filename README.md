@@ -6,3 +6,8 @@ These notebooks accompany a [video playlist](https://youtube.com/playlist?list=P
 ![rag_detail_v2](https://github.com/langchain-ai/rag-from-scratch/assets/122662504/54a2d76c-b07e-49e7-b4ce-fc45667360a1)
  
 [Video playlist](https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_PKyVJiQ23ZztA0x)
+
+---
+
+## Hands-On Beginner Course: RAG From Scratch
+Looking for a comprehensive, beginner-friendly, step-by-step 16-notebook course with a complete runnable domain corpus, automated evaluation benchmarks, and an interactive Gradio capstone web app? See the **[RAG From Scratch Beginner Course](course/README.md)**.
