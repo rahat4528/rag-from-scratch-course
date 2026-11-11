@@ -1,0 +1,28 @@
+# Virtual environments & Python caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Secrets & Environment files (NEVER commit .env!)
+.env
+.env.local
+*.key
+*.pem
+
+# Persisted local vector stores, scratch data & caches
+course/data/persisted_index/
+course/data/*.json.bak
+persisted_index/
+*.log
+.cache/
+.DS_Store
+Thumbs.db
+
