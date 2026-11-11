@@ -39,7 +39,16 @@ def verify_manifest(allow_readme_one_line: bool = True) -> bool:
         actual_sha = hashlib.sha256(target.read_bytes()).hexdigest()
         if actual_sha != expected_sha:
             if allow_readme_one_line and rel == "README.md":
-                base_lf = subprocess.check_output(["git", "show", "main:README.md"], cwd=str(ROOT)).replace(b"\r\n", b"\n")
+                base_lf = None
+                for candidate in ["main:README.md", "origin/main:README.md"]:
+                    try:
+                        base_lf = subprocess.check_output(["git", "show", candidate], cwd=str(ROOT), stderr=subprocess.DEVNULL).replace(b"\r\n", b"\n")
+                        break
+                    except Exception:
+                        pass
+                if base_lf is None:
+                    root_commits = subprocess.check_output(["git", "rev-list", "--max-parents=0", "HEAD"], cwd=str(ROOT)).decode().strip().splitlines()
+                    base_lf = subprocess.check_output(["git", "show", f"{root_commits[0]}:README.md"], cwd=str(ROOT)).replace(b"\r\n", b"\n")
                 cur_lf = target.read_bytes().replace(b"\r\n", b"\n")
                 if cur_lf.startswith(base_lf):
                     added_tail = cur_lf[len(base_lf):].decode("utf-8", errors="replace").strip()
