@@ -1,0 +1,35 @@
+NOVASPHERE DYNAMICS — EMPLOYEE & OPERATIONS HANDBOOK (2026 Edition)
+======================================================================
+
+1. COMPANY OVERVIEW & GLOBAL HUBS
+Novasphere Dynamics builds Novasphere OS, an autonomous fleet orchestration and real-time telemetry platform for industrial robots and automated warehouse drones. Our headquarters is in Zurich, Switzerland, with engineering hubs in Boston (USA) and Tokyo (Japan).
+
+2. WORKPLACE POLICIES & PETS
+Employees may work in hybrid mode (3 days on-site per week).
+- Zurich Hub Pet Policy: Well-behaved dogs are permitted in the Zurich hub on Tuesdays and Thursdays only, provided they are registered with office facilities and have valid vaccinations on file. Pets are not permitted in robotics hardware testing bays.
+
+3. COMPENSATION, BENEFITS & TRAVEL EXPENSES
+- Annual Learning Stipend: Full-time team members receive an annual learning stipend of $1,200 for technical books, courses, workshops, and conferences.
+- Travel Meal Reimbursement: Employees traveling on company business are reimbursed up to $150 per day for meals and non-alcoholic beverages without requiring prior VP approval. Meal expenses exceeding $150 per day require written pre-approval from the VP of Finance.
+
+4. COMMERCIAL PRICING PLANS (NOVASPHERE OS)
+All plans include automated over-the-air (OTA) firmware verification and AES-256 encrypted telemetry:
+- Starter Plan: $499 per month. Supports up to 10 active robot or drone nodes. Includes standard telemetry dashboards and 30-day log retention.
+- Professional Plan: $1,850 per month. Supports up to 50 active nodes. Includes the HyperSync protocol, 90-day telemetry retention, and dedicated Slack Connect support.
+- Enterprise Plan: $4,200 per month. Supports up to 200 active nodes. Includes ZeroGravity automatic failover, QuantumCache v4, 1-year telemetry retention, and 24/7/365 mission-critical support.
+
+5. CUSTOMER SUPPORT TIERS & OPERATING HOURS
+Novasphere provides tiered technical support based on your active commercial subscription:
+- Standard Support (Included in Starter Tier):
+  * Availability: Monday through Friday, 09:00 - 17:00 CET.
+  * Support Channels: Email and web ticket portal.
+  * Target First Response Time: Within 1 business day.
+- Professional Support (Included in Professional Tier):
+  * Availability: Monday through Saturday, 08:00 - 20:00 CET (including Saturday hours).
+  * Support Channels: Email, web ticket portal, and Slack Connect.
+  * Target First Response Time: Within 2 hours for Severity-1 and Severity-2 incidents.
+- Enterprise 24/7 Mission-Critical Support (Included in Enterprise Tier):
+  * Availability: 24 hours a day, 7 days a week, 365 days a year.
+  * Support Channels: Email, web ticket portal, Slack Connect, and dedicated on-call incident hotline.
+  * Target First Response Time: Within 15 minutes for Severity-1 outages; within 1 hour for Severity-2 issues.
+
