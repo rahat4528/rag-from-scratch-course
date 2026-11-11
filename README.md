@@ -191,6 +191,31 @@ rag-from-scratch-course/
 
 ---
 
+## Troubleshooting & FAQ
+
+- **Q: PyTorch DLL Load Error (`WinError 126`) on Windows?**  
+  *A:* Make sure you install the pinned version `torch>=2.6.0,<2.9.0` as specified in `requirements.txt`. Newer builds (2.15+) require missing VC++ runtime libraries.
+- **Q: Do I need an OpenAI or Anthropic API key to finish the course?**  
+  *A:* No! Every single notebook and the capstone app runs 100% free and offline by default using local neural embeddings (`all-MiniLM-L6-v2`) and `LocalGroundedChatModel`.
+- **Q: How do I test the REST API endpoints?**  
+  *A:* Run `python app/app.py`, then query `http://127.0.0.1:7860/health` or `POST http://127.0.0.1:7860/api/ask`. Non-POST methods strictly return HTTP `405 Method Not Allowed`.
+- **Q: How does pre-retrieval RBAC protect confidential documents?**  
+  *A:* Every chunk in `data/` carries an `access_level` (`public`, `employee`, `executive`). Query-time filtering removes unauthorized documents before semantic vector scoring begins.
+
+---
+
+## Glossary of Key Terms
+
+- **RAG (Retrieval-Augmented Generation):** The technique of providing an LLM with relevant outside documents retrieved on-the-fly to ground its answers in factual context.
+- **Embedding:** A dense vector of numbers (e.g. 384 dimensions) representing the semantic meaning of a word, sentence, or document.
+- **Vector Store:** A specialized database (such as `InMemoryVectorStore` or Chroma) designed to store embeddings and compute nearest-neighbor similarity searches at scale.
+- **Chunking:** Splitting lengthy documents into smaller, cohesive passages with boundary overlap so answers aren't split across chunks.
+- **Cross-Encoder Reranker:** A neural model that processes the query and passage together through full cross-attention for significantly higher retrieval precision.
+- **Context Window:** The finite token limit an LLM can process in a single generation prompt.
+- **Hallucination:** When an LLM generates convincing but factually false claims due to lack of grounded context.
+
+---
+
 ## Attribution & License
 
 - Based on the foundational concepts from [langchain-ai/rag-from-scratch](https://github.com/langchain-ai/rag-from-scratch).
