@@ -18,6 +18,7 @@ import gradio as gr
 from langchain_core.documents import Document
 from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from pydantic import BaseModel, Field
 from pypdf import PdfReader
 from rank_bm25 import BM25Okapi
 
@@ -37,6 +38,11 @@ ROLE_RIGHTS: Dict[str, set[str]] = {
 }
 
 MAX_QUERY_CHARS = 2000
+
+
+class QueryRequest(BaseModel):
+    question: str
+    role: str = "employee"
 
 
 def _tokenize(text: str) -> List[str]:
@@ -329,13 +335,8 @@ def create_demo() -> gr.Blocks:
 def create_fastapi_app():
     """Mount Gradio app onto FastAPI with explicit health and query endpoints."""
     from fastapi import FastAPI, HTTPException
-    from pydantic import BaseModel
 
     api = FastAPI(title="Novasphere RAG Capstone API", version="1.0.0")
-
-    class QueryRequest(BaseModel):
-        question: str
-        role: str = "employee"
 
     @api.get("/health")
     def health():
