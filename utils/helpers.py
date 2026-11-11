@@ -40,7 +40,6 @@ def print_qa_result(question: str, answer: str, docs: Iterable[Document] | None 
 
 def load_corpus_documents(data_dir: Path, include_pdf: bool = True) -> List[Document]:
     """Load the core Novasphere course corpus with clean normalized metadata."""
-    from langchain_community.document_loaders import TextLoader
     from pypdf import PdfReader
 
     docs: List[Document] = []
@@ -52,12 +51,17 @@ def load_corpus_documents(data_dir: Path, include_pdf: bool = True) -> List[Docu
     for filename, doc_type, access_level in text_files:
         path = data_dir / filename
         if path.exists():
-            loaded = TextLoader(str(path), encoding="utf-8").load()
-            for d in loaded:
-                d.metadata["source"] = filename
-                d.metadata["doc_type"] = doc_type
-                d.metadata["access_level"] = access_level
-                docs.append(d)
+            content = path.read_text(encoding="utf-8")
+            docs.append(
+                Document(
+                    page_content=content,
+                    metadata={
+                        "source": filename,
+                        "doc_type": doc_type,
+                        "access_level": access_level,
+                    },
+                )
+            )
 
     pdf_path = data_dir / "policy_brief.pdf"
     if include_pdf and pdf_path.exists():

@@ -496,11 +496,14 @@ class LocalGroundedChatModel(BaseChatModel):
     @staticmethod
     def _check_relevance(question: str, document: str) -> bool:
         q_toks = {t for t in _normalize_tokens(question) if t not in _STOPWORDS and not t.startswith("syn_")}
+        # Filter out generic brand words so queries like "What is Novasphere's NASDAQ stock ticker symbol?" don't match solely on "novasphere"
+        focus_toks = {t for t in q_toks if t not in {"novasphere", "dynamics", "company", "system", "os"}}
+        eval_toks = focus_toks if focus_toks else q_toks
         d_toks = set(_normalize_tokens(document))
-        if not q_toks or not d_toks:
+        if not eval_toks or not d_toks:
             return False
-        hits = sum(1 for t in q_toks if t in d_toks or _WORD_TO_CANON.get(t, "") in d_toks)
-        return (hits / len(q_toks)) >= 0.2 or hits >= 2
+        hits = sum(1 for t in eval_toks if t in d_toks or _WORD_TO_CANON.get(t, "") in d_toks)
+        return (hits / len(eval_toks)) >= 0.25 or hits >= 2
 
     def _judge_faithfulness(self, full_prompt: str) -> str:
         """Compare ANSWER claims against CONTEXT; catch hallucinations reliably."""

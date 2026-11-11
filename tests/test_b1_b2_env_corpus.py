@@ -14,8 +14,11 @@ DATA_DIR = ROOT / "data"
 
 
 def test_b1_required_imports():
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", DeprecationWarning)
+        import langchain_community
     import langchain_core
-    import langchain_community
     import langchain_text_splitters
     import langgraph
     import sentence_transformers

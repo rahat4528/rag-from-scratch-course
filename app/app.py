@@ -326,6 +326,34 @@ def create_demo() -> gr.Blocks:
     return demo
 
 
+def create_fastapi_app():
+    """Mount Gradio app onto FastAPI with explicit health and query endpoints."""
+    from fastapi import FastAPI, HTTPException
+    from pydantic import BaseModel
+
+    api = FastAPI(title="Novasphere RAG Capstone API", version="1.0.0")
+
+    class QueryRequest(BaseModel):
+        question: str
+        role: str = "employee"
+
+    @api.get("/health")
+    def health():
+        return {"status": "healthy", "service": "novasphere-rag-capstone"}
+
+    @api.post("/api/ask")
+    def ask_endpoint(req: QueryRequest):
+        ans, src, stats = handle_query(req.question, req.role)
+        return {"answer": ans, "citations": src, "telemetry": stats}
+
+    @api.api_route("/api/ask", methods=["GET", "PUT", "DELETE", "PATCH"])
+    def ask_method_not_allowed():
+        raise HTTPException(status_code=405, detail="Method Not Allowed")
+
+    blocks = create_demo()
+    return gr.mount_gradio_app(api, blocks, path="/")
+
+
 if __name__ == "__main__":
     app_ui = create_demo()
     port = int(os.getenv("PORT", "7860"))

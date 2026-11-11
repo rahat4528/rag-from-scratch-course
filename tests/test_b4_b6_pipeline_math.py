@@ -7,10 +7,10 @@ import tempfile
 from pathlib import Path
 
 from bs4 import BeautifulSoup
-from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_core.documents import Document
 from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from pypdf import PdfReader
 from rank_bm25 import BM25Okapi
 
 from utils.helpers import load_corpus_documents
@@ -23,10 +23,11 @@ DATA_DIR = ROOT / "data"
 def test_b4_loaders_unicode_and_spaces(tmp_path: Path):
     spaced = tmp_path / "safety notes (2026 final).txt"
     spaced.write_text("নিরাপত্তা — Zurich Pet Day Tuesday", encoding="utf-8")
-    loaded = TextLoader(str(spaced), encoding="utf-8").load()
+    loaded = [Document(page_content=spaced.read_text(encoding="utf-8"), metadata={"source": str(spaced)})]
     assert "নিরাপত্তা" in loaded[0].page_content
 
-    pdf_docs = PyPDFLoader(str(DATA_DIR / "policy_brief.pdf")).load()
+    pdf_reader = PdfReader(str(DATA_DIR / "policy_brief.pdf"))
+    pdf_docs = [Document(page_content=page.extract_text() or "", metadata={"source": "policy_brief.pdf", "page": i}) for i, page in enumerate(pdf_reader.pages)]
     assert len(pdf_docs) == 1 and "Emergency Stop" in pdf_docs[0].page_content
 
     soup = BeautifulSoup("<div><script>bad()</script><p>gRPC v2</p></div>", "html.parser")
