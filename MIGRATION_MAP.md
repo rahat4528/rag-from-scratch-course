@@ -43,3 +43,4 @@ This document records the item-by-item migration audit consolidating all unique 
 - **Total Migrated Items:** 16 critical assets (5 upstream notebooks, upstream docs, 3 verification scripts, 3 architecture/QA docs, Dockerfiles, FastAPI endpoints, model fixes, 2 archive history tags).
 - **Total Justified Skips:** 11 redundant or superseded items (duplicate generator scripts, nested package shims, duplicate corpus files).
 - **Zero Undecided Items:** All assets accounted for with evidence.
+

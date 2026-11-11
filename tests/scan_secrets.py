@@ -24,6 +24,7 @@ ALLOWLIST_SUBSTRINGS = (
     "sk-replace-with-your-key",
     "sk-1234567890",
     "sk-test-fake",
+    "sk-abcdef",
     "gho_************************************",
 )
 
