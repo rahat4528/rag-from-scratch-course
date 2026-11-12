@@ -122,6 +122,17 @@ def _normalize_tokens(text: str) -> List[str]:
     return tokens
 
 
+def cosine_similarity(vec_a: Any, vec_b: Any) -> float:
+    """Compute cosine similarity between two 1D numeric vectors (canonical utility for E2)."""
+    a = np.asarray(vec_a, dtype=float)
+    b = np.asarray(vec_b, dtype=float)
+    norm_a = float(np.linalg.norm(a))
+    norm_b = float(np.linalg.norm(b))
+    if norm_a == 0.0 or norm_b == 0.0:
+        return 0.0
+    return float(np.dot(a, b) / (norm_a * norm_b))
+
+
 class LocalHashEmbeddings(Embeddings):
     """
     Fast, zero-dependency, deterministic 384-dimensional local embeddings.

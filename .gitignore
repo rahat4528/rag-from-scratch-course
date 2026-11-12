@@ -22,6 +22,10 @@ data/persisted_index/
 data/persisted_store.json
 .cache/
 *.log
+.coverage
+htmlcov/
+dist/
+build/
 .DS_Store
 Thumbs.db
 

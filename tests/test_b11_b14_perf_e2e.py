@@ -89,7 +89,13 @@ def test_b13_capstone_14_questions_3x_temp0():
 
 
 def test_b14_markdown_links_and_code_hygiene():
-    md_files = [ROOT / "README.md", ROOT / "VIDEO_OUTLINE.md", ROOT / "app" / "README.md"]
+    md_files = [
+        ROOT / "README.md",
+        ROOT / "docs" / "VIDEO_OUTLINE.md",
+        ROOT / "docs" / "DECISIONS.md",
+        ROOT / "docs" / "KNOWN_ISSUES.md",
+        ROOT / "docs" / "TESTING.md",
+    ]
     link_re = re.compile(r"\[[^\]]+\]\(([^)#]+)\)")
     for md in md_files:
         text = md.read_text(encoding="utf-8")
