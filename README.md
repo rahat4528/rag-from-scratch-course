@@ -12,6 +12,7 @@ A beginner-friendly, **100% runnable** 16-notebook Jupyter course and production
 - **Novasphere Dynamics Domain Corpus (`data/`):** A custom fictional corporate corpus spanning `.txt`, `.md`, and `.pdf` files, accompanied by an annotated 14-question benchmark (`eval_questions.json`) testing exact numbers, multi-document joins, technical error codes, and unanswerables.
 - **Capstone Web App & REST API (`app/`):** A mobile-responsive Gradio UI mounted on **FastAPI** featuring live document upload, re-indexing, document retirement, pre-retrieval Role-Based Access Control (`guest`, `employee`, `executive`), prompt-injection neutralization, `/health` and `/api/ask` endpoints, and a production `Dockerfile`.
 - **Original LangChain Reference (`upstream/`):** Complete, untouched copy of all 5 original Jupyter notebooks from [langchain-ai/rag-from-scratch](https://github.com/langchain-ai/rag-from-scratch) for direct reference and historical study.
+- **Architecture & QA Documentation (`docs/`):** Unified testing report ([`docs/TESTING.md`](docs/TESTING.md)), architecture decisions matrix ([`docs/DECISIONS.md`](docs/DECISIONS.md)), known issues & compatibility notes ([`docs/KNOWN_ISSUES.md`](docs/KNOWN_ISSUES.md)), and companion video playlist outline ([`docs/VIDEO_OUTLINE.md`](docs/VIDEO_OUTLINE.md)).
 - **Exhaustive QA Suite (`tests/`):** 24 automated pytest tests covering unit components, RRF and MRR math, security, secret audits, cache latency, and 3x determinism.
 
 ---
@@ -135,54 +136,43 @@ python tests/scan_secrets.py
 rag-from-scratch-course/
 ├── .env.example                 # Environment configuration template (defaults to local mode)
 ├── .gitignore
-├── Dockerfile                   # Multi-stage container deployment file
+├── Dockerfile                   # Single multi-stage container deployment file
 ├── README.md                    # Master course documentation and syllabus
-├── VIDEO_OUTLINE.md             # 16-episode companion video playlist guide
-├── DECISIONS.md                 # Requirements traceability matrix (R1–R9) and architecture decisions
-├── KNOWN_ISSUES.md              # Upstream deprecation audit and dependency notes
 ├── requirements.txt             # Pinned, tested dependencies
 ├── app/
-│   ├── app.py                   # Gradio Web UI mounted on FastAPI REST API
-│   ├── Dockerfile               # Capstone container file
-│   └── README.md
+│   └── app.py                   # Gradio Web UI mounted on FastAPI REST API
 ├── data/
 │   ├── company_handbook.txt     # Novasphere policies, stipends, and support tiers
 │   ├── product_faq.md           # Technical error codes, ROS2 specifications, ZeroGravity failover
 │   ├── recent_changelog.md      # October 2026 release notes and API deprecations
 │   ├── policy_brief.pdf         # Safety brief PDF with confidential executive clauses
 │   └── eval_questions.json      # 14 curated benchmark questions with ground-truth targets
+├── docs/
+│   ├── DECISIONS.md             # Requirements traceability matrix (R1–R9) and architecture decisions
+│   ├── KNOWN_ISSUES.md          # Upstream deprecation audit and dependency notes
+│   ├── TESTING.md               # Unified QA testing, performance, security, and bug register
+│   └── VIDEO_OUTLINE.md         # 16-episode companion video playlist guide
 ├── notebooks/                   # 16 runnable Jupyter notebooks (00 through 15)
 ├── scripts/
-│   ├── build_part1_foundations.py   # Notebook generators with line-length ceilings
-│   ├── build_part2_core_pipeline.py
-│   ├── build_part3_advanced_rag.py
-│   ├── build_part4_agents_eval_prod.py
-│   ├── generate_pdf.py              # ReportLab corpus PDF generator
-│   ├── nb_builder.py                # Pedagogical notebook structure builder
-│   └── run_notebooks.py             # Top-to-bottom fresh-kernel runner and output saver
+│   └── run_notebooks.py         # Top-to-bottom fresh-kernel runner and output saver
 ├── tests/
-│   ├── test_b1_b2_env_corpus.py     # Environment, imports, and corpus UTF-8 tests
-│   ├── test_b3_helpers_auth.py      # Provider resolution and negative auth tests
-│   ├── test_b4_b6_pipeline_math.py  # Splitter, MMR, exact RRF and MRR math tests
-│   ├── test_b5_notebooks.py         # Notebook template and cell length audits
-│   ├── test_b7_b10_app_security.py  # XSS, injection, RBAC, and Gradio endpoint tests
-│   ├── test_b11_b14_perf_e2e.py     # Caching speedup, 3x determinism, and latency tests
-│   ├── base_manifest.sha256         # SHA-256 hashes of original reference files
-│   ├── verify_manifest.py           # Manifest verification script
-│   ├── scan_secrets.py              # Git tree and history credential scanner
-│   ├── BUG_REGISTER.md              # Defect audit and root-cause fix log
-│   ├── PERFORMANCE.md               # Latency, memory, and scaling measurements
-│   ├── SECURITY_FINDINGS.md         # Vulnerability analysis and mitigations
-│   ├── TEST_LOG.md                  # Test execution logs
-│   ├── TEST_PLAN.md                 # Master QA plan
-│   └── TEST_REPORT.md               # Final verification report
-├── upstream/                        # Original langchain-ai/rag-from-scratch notebooks
+│   ├── base_manifest.sha256     # SHA-256 hashes of original reference files
+│   ├── scan_secrets.py          # Git tree and history credential scanner
+│   ├── test_b1_b2_env_corpus.py # Environment, imports, and corpus UTF-8 tests
+│   ├── test_b3_helpers_auth.py  # Provider resolution and negative auth tests
+│   ├── test_b4_b6_pipeline_math.py # Splitter, MMR, exact RRF and MRR math tests
+│   ├── test_b5_notebooks.py     # Notebook template and cell length audits
+│   ├── test_b7_b10_app_security.py # XSS, injection, RBAC, and Gradio endpoint tests
+│   ├── test_b11_b14_perf_e2e.py # Caching speedup, 3x determinism, and latency tests
+│   ├── test_repo_integrity.py   # Single-canonical-version integrity and anti-regression enforcement
+│   └── verify_manifest.py       # Manifest verification script
+├── upstream/                    # Original langchain-ai/rag-from-scratch notebooks (E1 reference)
+│   ├── README.md
 │   ├── rag_from_scratch_1_to_4.ipynb
 │   ├── rag_from_scratch_5_to_9.ipynb
 │   ├── rag_from_scratch_10_and_11.ipynb
 │   ├── rag_from_scratch_12_to_14.ipynb
-│   ├── rag_from_scratch_15_to_18.ipynb
-│   └── README.md
+│   └── rag_from_scratch_15_to_18.ipynb
 └── utils/
     ├── __init__.py
     ├── helpers.py               # Corpus loaders, display formatters, sanitizers
