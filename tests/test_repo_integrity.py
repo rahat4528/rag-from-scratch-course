@@ -186,6 +186,8 @@ def test_no_tracked_file_mentions_course_v2_or_v3():
     violations: list[str] = []
 
     for rel_path in tracked:
+        if rel_path == "tests/test_repo_integrity.py":
+            continue
         file_path = ROOT / rel_path
         # Skip binary files like PDFs
         if rel_path.endswith(".pdf"):
